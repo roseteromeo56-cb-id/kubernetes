@@ -37,12 +37,13 @@ GOPROXY=off go install k8s.io/code-generator/cmd/go-to-protobuf/protoc-gen-gogo
 # searches for the protoc-gen-gogo extension in the output directory
 # satisfies import of github.com/gogo/protobuf/gogoproto/gogo.proto and the
 # core Google protobuf types
+# required for gogo.proto
 PATH="${KUBE_ROOT}/_output/bin:${PATH}" \
   go-to-protobuf \
   -v "${KUBE_VERBOSE}" \
   --go-header-file "${KUBE_ROOT}/hack/boilerplate/boilerplate.generatego.txt" \
   --output-dir="${KUBE_ROOT}/staging/src" \
   --proto-import="${KUBE_ROOT}/staging/src" \
-  --proto-import="${KUBE_ROOT}/vendor" `# required for gogo.proto` \
+  --proto-import="${KUBE_ROOT}/vendor" \
   --proto-import="${KUBE_ROOT}/third_party/protobuf" \
   --packages="$(IFS=, ; echo "$*")"
