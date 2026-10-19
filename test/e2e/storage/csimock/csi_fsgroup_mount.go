@@ -18,7 +18,7 @@ package csimock
 
 import (
 	"context"
-	"math/rand"
+	"crypto/rand"
 	"strconv"
 
 	"github.com/onsi/ginkgo/v2"
