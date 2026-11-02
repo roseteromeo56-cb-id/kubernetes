@@ -597,8 +597,7 @@ function kube::codegen::gen_client() {
             informer-gen"${CODEGEN_VERSION_SPEC}"
             lister-gen"${CODEGEN_VERSION_SPEC}"
         )
-        # shellcheck disable=2046 # printf word-splitting is intentional
-        GO111MODULE=on go install "$(printf "k8s.io/code-generator/cmd/%s " "${BINS[@]}")"
+        GO111MODULE=on go install "${BINS[@]/#/k8s.io/code-generator/cmd/}"
     )
     # Go installs in $GOBIN if defined, and $GOPATH/bin otherwise
     gobin="${GOBIN:-$(go env GOPATH)/bin}"
