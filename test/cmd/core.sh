@@ -185,7 +185,7 @@ run_pod_tests() {
   output_message="$(kubectl get pods --field-selector metadata.name=valid-pod "${kube_flags[@]}")"
   kube::test::if_has_string "${output_message}" "valid-pod"
   # Command
-  phase=$(kubectl get "${kube_flags[@]}" pod valid-pod -o go-template='{{ .status.phase }}')
+  phase="$(kubectl get "${kube_flags[@]}" pod valid-pod -o go-template='{{ .status.phase }}')"
   output_message="$(kubectl get pods --field-selector status.phase="${phase}" "${kube_flags[@]}")"
   kube::test::if_has_string "${output_message}" "valid-pod"
 
